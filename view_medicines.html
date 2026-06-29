@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Medicine List</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="container">
+
+    <h1>💊 Medicine Inventory</h1>
+
+    <table class="medicine-table">
+
+        <tr>
+            <th>ID</th>
+            <th>Medicine Name</th>
+            <th>Quantity</th>
+            <th>Expiry Date</th>
+            <th>Manufacturer</th>
+            <th>Action</th>
+        </tr>
+
+        {% for medicine in medicines %}
+
+        <tr>
+            <td>{{ medicine[0] }}</td>
+            <td>{{ medicine[1] }}</td>
+            <td>{{ medicine[2] }}</td>
+            <td>{{ medicine[3] }}</td>
+            <td>{{ medicine[4] }}</td>
+
+            <td>
+                <a class="btn update-btn"
+                   href="/update/{{ medicine[0] }}">
+                    Update
+                </a>
+
+                <a class="btn delete-btn"
+                   href="/delete/{{ medicine[0] }}">
+                    Delete
+                </a>
+            </td>
+        </tr>
+
+        {% endfor %}
+
+    </table>
+
+    <br>
+
+    <a href="/" class="home-btn">🏠 Back to Dashboard</a>
+
+</div>
+
+</body>
+</html>

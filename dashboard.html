@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Smart Medicine Inventory System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <div class="container">
+
+        <h1>💊 Smart Medicine Inventory System</h1>
+
+        <div class="alerts">
+
+            <h2>Notifications</h2>
+
+            {% if low_stock %}
+                <div class="alert-box warning">
+                    <h3>⚠️ Low Stock Alerts</h3>
+
+                    {% for medicine in low_stock %}
+                        <p>{{ medicine[0] }} stock is low!</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+
+            {% if expired %}
+                <div class="alert-box danger">
+                    <h3>🚨 Expiry Alerts</h3>
+
+                    {% for medicine in expired %}
+                        <p>{{ medicine[0] }} has expired!</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+
+            {% if not low_stock and not expired %}
+                <div class="alert-box success">
+                    <p>✅ No Alerts</p>
+                </div>
+            {% endif %}
+
+        </div>
+
+        <div class="cards">
+
+            <a href="/add" class="card">
+                ➕ Add Medicine
+            </a>
+
+            <a href="/view" class="card">
+                📋 View Medicines
+            </a>
+
+            <a href="/lowstock" class="card">
+                ⚠️ Low Stock
+            </a>
+
+            <a href="/expiry" class="card">
+                🚨 Expiry Alerts
+            </a>
+
+        </div>
+
+    </div>
+
+</body>
+</html>
